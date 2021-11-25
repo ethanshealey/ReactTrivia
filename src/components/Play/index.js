@@ -2,7 +2,10 @@ import { useState, useEffect } from 'react'
 import { Space, Dropdown, Button, Menu, Divider, Progress } from 'antd'
 import { DownOutlined } from '@ant-design/icons';
 import { categories, difficulties, types, getData } from '../../api';
-import { is } from '@babel/types';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+
+const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 const Play = () => {
 
@@ -10,7 +13,7 @@ const Play = () => {
     const [ difficulty, setDifficulty ] = useState('Any Difficulty')
     const [ type, setType ] = useState('Any Type')
 
-    const [ timer, setTimer ] = useState(0)
+    const [ isLoaded, setIsLoaded ] = useState(false)
 
     const [ questionCategory, setQuestionCategory ] = useState('')
     const [ question, setQuestion ] = useState('')
@@ -27,6 +30,7 @@ const Play = () => {
     }, [])
 
     const getQuestion = async () => {
+        setIsLoaded(false)
         const [cat, q, ans, corr, diff, ty, color] = await getData(category, difficulty, type)
         setQuestionCategory(cat)
         setQuestion(q)
@@ -35,6 +39,7 @@ const Play = () => {
         setQuestionDiff(diff)
         setQuestionType(ty)
         setDiffColor(color)
+        setIsLoaded(true)
     }
 
     const handleAnswer = (ans) => {
@@ -83,29 +88,35 @@ const Play = () => {
                 <Button type="primary" onClick={handleNextQuestion}>Go</Button>
             </Space>
             <Divider />
-            <div className="header-container">
-                <h1 className="header-md">{ question }</h1>
-                <h4 className="sub">{ questionCategory } | <span style={{ color: diffColor }}>{ questionDiff }</span></h4>
-            </div>
-            <Space direction="vertical" size="middle">
-                { answers.map((ans, i) => (
-                    <Button key={i} style={{ minWidth: '50vh' }} block onClick={() => handleAnswer(ans)}>{ ans }</Button>
-                ))}
-                <div style={ isAnswered ? { display: 'block' } : { display: 'none' } }>
-                    <Divider />
-                    {
-                        correctAnswer === userAnswer ? 
-                            <h3 style={{ color: 'green' }}>Thats right!</h3> 
-                            : 
-                            <>
-                                <h3 style={{ color: 'red' }}>Sorry, thats incorrect!</h3>
-                                <br />
-                                <p style={{ marginTop: '-30px' }} className="sub">The correct answer was <b>{correctAnswer}</b></p>
-                            </>
-                    }
-                    <Button onClick={() => handleNextQuestion()} type="primary" style={{ width: '50vh' }}>Next Question</Button>
+            { isLoaded ? 
+            <>
+                <div className="header-container">
+                    <h1 className="header-md">{ question }</h1>
+                    <h4 className="sub">{ questionCategory } | <span style={{ color: diffColor }}>{ questionDiff }</span></h4>
                 </div>
-            </Space>
+                <Space direction="vertical" size="middle">
+                    { answers.map((ans, i) => (
+                        <Button key={i} style={{ minWidth: '50vh' }} block onClick={() => handleAnswer(ans)}>{ ans }</Button>
+                    ))}
+                    <div style={ isAnswered ? { display: 'block' } : { display: 'none' } }>
+                        <Divider />
+                        {
+                            correctAnswer === userAnswer ? 
+                                <h3 style={{ color: 'green' }}>Thats right!</h3> 
+                                : 
+                                <>
+                                    <h3 style={{ color: 'red' }}>Sorry, thats incorrect!</h3>
+                                    <br />
+                                    <p style={{ marginTop: '-30px' }} className="sub">The correct answer was <b>{correctAnswer}</b></p>
+                                </>
+                        }
+                        <Button onClick={() => handleNextQuestion()} type="primary" style={{ width: '50vh' }}>Next Question</Button>
+                    </div>
+                </Space>
+            </>
+            :
+                <Spin indicator={antIcon} />
+            }
             
         </div>
     )

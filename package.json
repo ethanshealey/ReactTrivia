@@ -1,6 +1,6 @@
 {
   "name": "react_trivia",
-  "homepage": "https://ethanshealey.github.io/ReactTrivia",
+  "homepage": "http://trivia.ethanshealey.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
