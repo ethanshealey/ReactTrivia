@@ -30,7 +30,7 @@ function App() {
           }
         </div>
       </Content>
-      <Footer style={{ textAlign: 'center' }}>Trivia! ©2020 Created by Ethan Shealey</Footer>
+      <Footer style={{ textAlign: 'center' }}>Trivia! ©2021 Created by Ethan Shealey</Footer>
     </Layout>
   );
 }

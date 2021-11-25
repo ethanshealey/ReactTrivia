@@ -53,7 +53,7 @@ const Play = () => {
     return (
         <div className="play-container">
             <Space direction="horizontal" size="middle" wrap align="center">
-                <Dropdown overlay={() => (
+                <Dropdown placement="bottomLeft" overlay={() => (
                     <Menu>
                         { categories.map((cat, i) => (
                             <Menu.Item key={i} onClick={() => setCategory(cat)}>{ cat }</Menu.Item>
@@ -62,7 +62,7 @@ const Play = () => {
                 )}>
                     <Button style={{ width: '50vh' }}>{ category }<DownOutlined /></Button>
                 </Dropdown>
-                <Dropdown overlay={() => (
+                <Dropdown placement="bottomLeft" overlay={() => (
                     <Menu>
                         { difficulties.map((diff, i) => (
                             <Menu.Item key={i} onClick={() => setDifficulty(diff)}>{ diff }</Menu.Item>
@@ -71,7 +71,7 @@ const Play = () => {
                 )}>
                     <Button style={{ width: '25vh' }}>{ difficulty }<DownOutlined /></Button>
                 </Dropdown>
-                <Dropdown overlay={() => (
+                <Dropdown placement="bottomLeft" overlay={() => (
                     <Menu>
                         { types.map((ty, i) => (
                             <Menu.Item key={i} onClick={() => setType(ty)}>{ty}</Menu.Item>
