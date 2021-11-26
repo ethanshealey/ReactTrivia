@@ -12,13 +12,21 @@ const Results = (props) => {
         'Good job!',
     ]
 
+    const incorrect_responses = [
+        'Incorrect!',
+        'That\'s not right!',
+        'Sorry, that\'s not it!',
+        'Sorry, that\'s incorrect!',
+        'Nope, that\'s not it!'
+    ]
+
     const isMobile = useMediaQuery({ maxWidth: 980 })
 
     if(isMobile)
         return (
             <Space direction="vertical" size="middle">   
                 <div style={ props.isAnswered ? { display: 'block', width: '50vw' } : { display: 'none', width: '50vw' } }>
-                    <Divider />
+                    <Divider id="results" />
                     {
                         props.correctAnswer === props.userAnswer ? 
                             <h3 style={{ color: 'green' }}>{ correct_responses[Math.floor(Math.random() * correct_responses.length)] }</h3> 
@@ -43,7 +51,7 @@ const Results = (props) => {
                             <h3 style={{ color: 'green' }}>{ correct_responses[Math.floor(Math.random() * correct_responses.length)] }</h3> 
                             : 
                             <>
-                                <h3 style={{ color: 'red' }}>Sorry, thats incorrect!</h3>
+                                <h3 style={{ color: 'red' }}>{ incorrect_responses[Math.floor(Math.random() * incorrect_responses.length)] }</h3>
                                 <br />
                                 <p style={{ marginTop: '-30px' }} className="sub">The correct answer was <b>{props.correctAnswer}</b></p>
                             </>
