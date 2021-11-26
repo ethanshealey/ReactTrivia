@@ -93,6 +93,8 @@ const getCategoryCode = (cat) => {
             return 31
         case 'Cartoon & Animations':
             return 32
+        default:
+            return null
     }
 }
 
@@ -106,6 +108,8 @@ const getDiffCode = (diff) => {
             return 'medium'
         case 'Hard':
             return 'hard'
+        default:
+            return null
     }
 }
 
@@ -117,6 +121,8 @@ const getTypeCode = (ty) => {
             return 'multiple'
         case 'True and False':
             return 'boolean'
+        default:
+            return null
     }
 }
 

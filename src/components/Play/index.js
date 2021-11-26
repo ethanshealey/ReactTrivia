@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Space, Dropdown, Button, Menu, Divider, Progress } from 'antd'
-import { DownOutlined } from '@ant-design/icons';
+import { Space, Divider } from 'antd'
 import { categories, difficulties, types, getData } from '../../api';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
@@ -9,7 +8,7 @@ import Question from '../Question';
 import AnswerList from '../AnswerList';
 import Results from '../Results';
 
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+const loadingIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
 
 const Play = () => {
 
@@ -84,7 +83,7 @@ const Play = () => {
                     </Space>
                 </>
             :
-                <Spin indicator={antIcon} />
+                <Spin indicator={loadingIcon} />
             }
             
         </div>

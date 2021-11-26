@@ -4,6 +4,14 @@ import { useMediaQuery } from 'react-responsive'
 
 const Results = (props) => {
 
+    const correct_responses = [
+        'Correct!',
+        'You got it!',
+        'You are correct!',
+        'That\'s right!',
+        'Good job!',
+    ]
+
     const isMobile = useMediaQuery({ maxWidth: 980 })
 
     if(isMobile)
@@ -13,7 +21,7 @@ const Results = (props) => {
                     <Divider />
                     {
                         props.correctAnswer === props.userAnswer ? 
-                            <h3 style={{ color: 'green' }}>Thats right!</h3> 
+                            <h3 style={{ color: 'green' }}>{ correct_responses[Math.floor(Math.random() * correct_responses.length)] }</h3> 
                             : 
                             <>
                                 <h3 style={{ color: 'red' }}>Sorry, thats incorrect!</h3>
@@ -32,7 +40,7 @@ const Results = (props) => {
                     <Divider />
                     {
                         props.correctAnswer === props.userAnswer ? 
-                            <h3 style={{ color: 'green' }}>Thats right!</h3> 
+                            <h3 style={{ color: 'green' }}>{ correct_responses[Math.floor(Math.random() * correct_responses.length)] }</h3> 
                             : 
                             <>
                                 <h3 style={{ color: 'red' }}>Sorry, thats incorrect!</h3>

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Layout, Menu } from 'antd'
 import Home from './components/Home'
 import Play from './components/Play'
+import { GithubFilled } from '@ant-design/icons';
 import 'antd/dist/antd.css'
 import './App.css';
 
@@ -28,7 +29,7 @@ function App() {
           }
         </div>
       </Content>
-      <Footer style={{ textAlign: 'center' }}>Trivia! ©2021 Created by Ethan Shealey</Footer>
+      <Footer style={{ textAlign: 'center' }}>Trivia! ©2021 Created by Ethan Shealey | <a href="https://www.github.com/ethanshealey/ReactTrivia" target="_blank" rel="noreferrer" ><GithubFilled style={{ color: 'black' }}/></a></Footer>
     </Layout>
   );
 }
