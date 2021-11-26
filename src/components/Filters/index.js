@@ -43,7 +43,7 @@ const Filters = (props) => {
     else
         return (
             <Space direction="horizontal" size="middle" wrap align="center">
-                <Dropdown placement="bottomLeft" overlay={() => (
+                <Dropdown trigger={['click']} arrow placement="bottomLeft" overlay={() => (
                     <Menu>
                         { props.categories.map((cat, i) => (
                             <Menu.Item key={i} onClick={() => props.setCategory(cat)}>{ cat }</Menu.Item>
@@ -52,7 +52,7 @@ const Filters = (props) => {
                 )}>
                     <Button style={{ width: '22vw' }}>{ props.category }<DownOutlined /></Button>
                 </Dropdown>
-                <Dropdown placement="bottomLeft" overlay={() => (
+                <Dropdown trigger={['click']} arrow placement="bottomLeft" overlay={() => (
                     <Menu>
                         { props.difficulties.map((diff, i) => (
                             <Menu.Item key={i} onClick={() => props.setDifficulty(diff)}>{ diff }</Menu.Item>
@@ -61,7 +61,7 @@ const Filters = (props) => {
                 )}>
                     <Button style={{ width: '15vw' }}>{ props.difficulty }<DownOutlined /></Button>
                 </Dropdown>
-                <Dropdown placement="bottomLeft" overlay={() => (
+                <Dropdown trigger={['click']} arrow placement="bottomLeft" overlay={() => (
                     <Menu>
                         { props.types.map((ty, i) => (
                             <Menu.Item key={i} onClick={() => props.setType(ty)}>{ty}</Menu.Item>
