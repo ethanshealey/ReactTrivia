@@ -11,7 +11,7 @@ const Filters = (props) => {
         return (
             <Space direction="vertical" size="middle" wrap align="center">
                 <Dropdown placement="bottomLeft" overlay={() => (
-                    <Menu>
+                    <Menu style={{ maxHeight: '300px', overflowY: 'scroll', overflowX: 'hidden' }}>
                         { props.categories.map((cat, i) => (
                             <Menu.Item key={i} onClick={() => props.setCategory(cat)}>{ cat }</Menu.Item>
                         ))}
