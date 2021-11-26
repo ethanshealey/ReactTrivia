@@ -18,7 +18,7 @@ const AnswerList = (props) => {
         return (
             <Space direction="vertical" size="middle">
                 { props.answers.map((ans, i) => (
-                    <Button key={i} style={{ minWidth: '50vh' }} block onClick={() => props.handleAnswer(ans)}>{ ans }</Button>
+                    <Button key={i} style={{ minWidth: '25vw' }} block onClick={() => props.handleAnswer(ans)}>{ ans }</Button>
                 ))}
             </Space>
     )

@@ -50,7 +50,7 @@ const Filters = (props) => {
                         ))}
                     </Menu>
                 )}>
-                    <Button style={{ width: '50vh' }}>{ props.category }<DownOutlined /></Button>
+                    <Button style={{ width: '22vw' }}>{ props.category }<DownOutlined /></Button>
                 </Dropdown>
                 <Dropdown placement="bottomLeft" overlay={() => (
                     <Menu>
@@ -59,7 +59,7 @@ const Filters = (props) => {
                         ))}
                     </Menu>
                 )}>
-                    <Button style={{ width: '25vh' }}>{ props.difficulty }<DownOutlined /></Button>
+                    <Button style={{ width: '15vw' }}>{ props.difficulty }<DownOutlined /></Button>
                 </Dropdown>
                 <Dropdown placement="bottomLeft" overlay={() => (
                     <Menu>
@@ -68,7 +68,7 @@ const Filters = (props) => {
                         ))}
                     </Menu>
                 )}>
-                    <Button style={{ width: '25vh' }}>{ props.type }<DownOutlined /></Button>
+                    <Button style={{ width: '15vw' }}>{ props.type }<DownOutlined /></Button>
                 </Dropdown>
                 <Button type="primary" onClick={props.handleNextQuestion}>Go</Button>
             </Space>
