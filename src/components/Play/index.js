@@ -4,6 +4,10 @@ import { DownOutlined } from '@ant-design/icons';
 import { categories, difficulties, types, getData } from '../../api';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import Filters from '../Filters'
+import Question from '../Question';
+import AnswerList from '../AnswerList';
+import Results from '../Results';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
@@ -26,6 +30,8 @@ const Play = () => {
     const [ isAnswered, setIsAnswered ] = useState(false)
 
     useEffect(() => {
+        setIsAnswered(false)
+        setUserAnswer('')
         getQuestion()
     }, [])
 
@@ -57,63 +63,26 @@ const Play = () => {
 
     return (
         <div className="play-container">
-            <Space direction="horizontal" size="middle" wrap align="center">
-                <Dropdown placement="bottomLeft" overlay={() => (
-                    <Menu>
-                        { categories.map((cat, i) => (
-                            <Menu.Item key={i} onClick={() => setCategory(cat)}>{ cat }</Menu.Item>
-                        ))}
-                    </Menu>
-                )}>
-                    <Button style={{ width: '50vh' }}>{ category }<DownOutlined /></Button>
-                </Dropdown>
-                <Dropdown placement="bottomLeft" overlay={() => (
-                    <Menu>
-                        { difficulties.map((diff, i) => (
-                            <Menu.Item key={i} onClick={() => setDifficulty(diff)}>{ diff }</Menu.Item>
-                        ))}
-                    </Menu>
-                )}>
-                    <Button style={{ width: '25vh' }}>{ difficulty }<DownOutlined /></Button>
-                </Dropdown>
-                <Dropdown placement="bottomLeft" overlay={() => (
-                    <Menu>
-                        { types.map((ty, i) => (
-                            <Menu.Item key={i} onClick={() => setType(ty)}>{ty}</Menu.Item>
-                        ))}
-                    </Menu>
-                )}>
-                    <Button style={{ width: '25vh' }} >{ type }<DownOutlined /></Button>
-                </Dropdown>
-                <Button type="primary" onClick={handleNextQuestion}>Go</Button>
-            </Space>
+            <Filters 
+                categories={categories} category={category} setCategory={setCategory} 
+                difficulties={difficulties} difficulty={difficulty} setDifficulty={setDifficulty}
+                types={types} type={type} setType={setType}
+                handleNextQuestion={handleNextQuestion}
+            />
             <Divider />
             { isLoaded ? 
-            <>
-                <div className="header-container">
-                    <h1 className="header-md">{ question }</h1>
-                    <h4 className="sub">{ questionCategory } | <span style={{ color: diffColor }}>{ questionDiff }</span></h4>
-                </div>
-                <Space direction="vertical" size="middle">
-                    { answers.map((ans, i) => (
-                        <Button key={i} style={{ minWidth: '50vh' }} block onClick={() => handleAnswer(ans)}>{ ans }</Button>
-                    ))}
-                    <div style={ isAnswered ? { display: 'block' } : { display: 'none' } }>
-                        <Divider />
-                        {
-                            correctAnswer === userAnswer ? 
-                                <h3 style={{ color: 'green' }}>Thats right!</h3> 
-                                : 
-                                <>
-                                    <h3 style={{ color: 'red' }}>Sorry, thats incorrect!</h3>
-                                    <br />
-                                    <p style={{ marginTop: '-30px' }} className="sub">The correct answer was <b>{correctAnswer}</b></p>
-                                </>
-                        }
-                        <Button onClick={() => handleNextQuestion()} type="primary" style={{ width: '50vh' }}>Next Question</Button>
-                    </div>
-                </Space>
-            </>
+                <>
+                    <Question 
+                        question={question} 
+                        questionCategory={questionCategory}
+                        questionDiff={questionDiff}
+                        diffColor={diffColor}
+                    />
+                    <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+                        <AnswerList answers={answers} handleAnswer={handleAnswer} userAnswer={userAnswer} />
+                        <Results correctAnswer={correctAnswer} isAnswered={isAnswered} userAnswer={userAnswer} handleNextQuestion={handleNextQuestion} />
+                    </Space>
+                </>
             :
                 <Spin indicator={antIcon} />
             }
