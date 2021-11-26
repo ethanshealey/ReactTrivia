@@ -10,7 +10,7 @@ const Filters = (props) => {
     if(isMobile)
         return (
             <Space direction="vertical" size="middle" wrap align="center">
-                <Dropdown placement="bottomLeft" overlay={() => (
+                <Dropdown  trigger={['click']} arrow placement="bottomLeft" overlay={() => (
                     <Menu style={{ maxHeight: '300px', overflowY: 'scroll', overflowX: 'hidden' }}>
                         { props.categories.map((cat, i) => (
                             <Menu.Item key={i} onClick={() => props.setCategory(cat)}>{ cat }</Menu.Item>
@@ -19,14 +19,14 @@ const Filters = (props) => {
                 )}>
                     <Button style={{ width: '50vw' }}>{ props.category }<DownOutlined /></Button>
                 </Dropdown>
-                <Dropdown placement="bottomLeft" overlay={() => (
+                <Dropdown  trigger={['click']} arrow placement="bottomLeft" overlay={() => (
                     <Menu>
                         { props.difficulties.map((diff, i) => (
                             <Menu.Item key={i} onClick={() => props.setDifficulty(diff)}>{ diff }</Menu.Item>
                         ))}
                     </Menu>
                 )}>
-                    <Button style={{ width: '50vw' }}>{ props.difficulty }<DownOutlined /></Button>
+                    <Button  trigger={['click']} arrow style={{ width: '50vw' }}>{ props.difficulty }<DownOutlined /></Button>
                 </Dropdown>
                 <Dropdown placement="bottomLeft" overlay={() => (
                     <Menu>
