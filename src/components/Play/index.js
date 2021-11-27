@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Space, Divider } from 'antd'
 import { categories, difficulties, types, getData } from '../../api';
 import { Spin } from 'antd';
@@ -11,6 +11,8 @@ import Results from '../Results';
 const loadingIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
 
 const Play = () => {
+
+    const bottomOfScreen = useRef(null)
 
     const [ category, setCategory ] = useState('Any Category')
     const [ difficulty, setDifficulty ] = useState('Any Difficulty')
@@ -51,6 +53,7 @@ const Play = () => {
         if(!isAnswered){
             setUserAnswer(ans)
             setIsAnswered(true)
+            bottomOfScreen.current?.scrollIntoView({ behavior: 'smooth' })
         }
     }
 
@@ -81,6 +84,7 @@ const Play = () => {
                         <AnswerList answers={answers} handleAnswer={handleAnswer} userAnswer={userAnswer} />
                         <Results correctAnswer={correctAnswer} isAnswered={isAnswered} userAnswer={userAnswer} handleNextQuestion={handleNextQuestion} />
                     </Space>
+                    <div ref={bottomOfScreen} />
                 </>
             :
                 <Spin indicator={loadingIcon} />

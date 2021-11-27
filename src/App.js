@@ -14,7 +14,7 @@ function App() {
 
   return (
     <Layout className="layout">
-      <Header>
+      <Header style={{ position: 'fixed', zIndex: 1, width: '100%', marginBottom: 24 }}>
         <div className="logo">Trivia!</div>
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']} selectedKeys={selected.toString()}>
           <Menu.Item key="1" onClick={() => setSelected(1)}>Home</Menu.Item>
