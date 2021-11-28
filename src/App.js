@@ -21,7 +21,7 @@ function App() {
           <Menu.Item key="2" onClick={() => setSelected(2)}>Play</Menu.Item>
         </Menu>
       </Header>
-      <Content style={{ padding: '50px 50px 0 50px', marginTop: '10vh' }}>
+      <Content style={{ padding: '50px 50px 0 50px', marginTop: '7vh' }}>
         <div className="site-layout-content">
           { 
             selected === 1 ? <Home setSelected={setSelected} /> :
